@@ -19,96 +19,97 @@ app.get('/sse', respondSSE)
 
 app.listen(port, () => console.log(`Server listening on port ${port}`))
 
-function respondText (req, res) {
+function respondText(req, res) {
 
-res.setHeader('Content-Type', 'text/plain')
-res.end('hi')
-
-}
-
-
-function respondJson (req, res) {
-
-res.json({ text: 'hi', numbers: [1, 2, 3] })
-
-}
-
-function respondEcho (req, res) {
-
-const { input = '' } = req.query
-
-res.json({
-
-normal: input,
-
-shouty: input.toUpperCase(),
-
-characterCount: input.length,
-
-backwards: input
-
-.split('')
-
-.reverse()
-
-.join('')})
-}
-
-	function respondStatic (req, res) {
-
-const filename = `${__dirname}/public/${req.params[0]}`
-
-fs.createReadStream(filename)
-
-.on('error', () => respondNotFound(req, res))
-
-.pipe(res)
-
-}
-
-function respondChat (req, res) {
-
-const { message } = req.query
-
-chatEmitter.emit('message', message)
-
-res.end()
+    res.setHeader('Content-Type', 'text/plain')
+    res.end('hi')
 
 }
 
 
+function respondJson(req, res) {
 
-function respondSSE (req, res) {
+    res.json({ text: 'hi', numbers: [1, 2, 3] })
 
-res.writeHead(200, {
+}
 
-'Content-Type': 'text/event-stream',
+function respondEcho(req, res) {
 
-'Connection': 'keep-alive'
+    const { input = '' } = req.query
 
-})
+    res.json({
 
+        normal: input,
 
+        shouty: input.toUpperCase(),
 
-const onMessage = msg => res.write(`data: ${msg}\n\n`)
+        characterCount: input.length,
 
-chatEmitter.on('message', onMessage)
+        backwards: input
 
+            .split('')
 
+            .reverse()
 
-res.on('close', function () {
+            .join('')
+    })
+}
 
-chatEmitter.off('message', onMessage)
+function respondStatic(req, res) {
 
-})
+    const filename = `${__dirname}/public/${req.params[0]}`
+
+    fs.createReadStream(filename)
+
+    .on('error', () => respondNotFound(req, res))
+
+    .pipe(res)
+
+}
+
+function respondChat(req, res) {
+
+    const { message } = req.query
+
+    chatEmitter.emit('message', message)
+
+    res.end()
 
 }
 
 
 
-function respondNotFound (req, res) {
+function respondSSE(req, res) {
 
-res.writeHead(404, { 'Content-Type': 'text/plain' })
+    res.writeHead(200, {
 
-res.end('Not Found')
+        'Content-Type': 'text/event-stream',
+
+        'Connection': 'keep-alive'
+
+    })
+
+
+
+    const onMessage = msg => res.write(`data: ${msg}\n\n`)
+
+    chatEmitter.on('message', onMessage)
+
+
+
+    res.on('close', function() {
+
+        chatEmitter.off('message', onMessage)
+
+    })
+
+}
+
+
+
+function respondNotFound(req, res) {
+
+    res.writeHead(404, { 'Content-Type': 'text/plain' })
+
+    res.end('Not Found')
 }

@@ -14,30 +14,30 @@ fs.createReadStream('people.csv')
 
 .on('data', row => console.log(JSON.stringify(row)))
 
-function clean () {
+function clean() {
 
-return new Transform({
+    return new Transform({
 
-objectMode: true,
+        objectMode: true,
 
-transform (row, encoding, callback) {
+        transform(row, encoding, callback) {
 
-const [firstName, lastName] = row.name.split(' ')
+            const [firstName, lastName] = row.name.split(' ')
 
-const age = Math.floor((Date.now() - new Date(row.dob))/YEAR_MS)
+            const age = Math.floor((Date.now() - new Date(row.dob)) / YEAR_MS)
 
-callback(null, {
+            callback(null, {
 
-firstName,
+                firstName,
 
-lastName,
+                lastName,
 
-age
+                age
 
-})
+            })
 
-}
+        }
 
-})
+    })
 
 }
