@@ -1,6 +1,3 @@
-const express = require('express')
-const router = express.Router()
-
 function cors(req, res, next) {
 
     const origin = req.headers.origin
@@ -41,4 +38,4 @@ function notFound(req, res) {
     res.status(404).json({ error: 'Not Found' })
 
 }
-module.exports
+module.exports = middleware()

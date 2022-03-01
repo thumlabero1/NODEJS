@@ -1,6 +1,6 @@
 const express = require('express')
 
-const api = require('./api-02')
+const api = require('./api')
 
 const port = process.env.PORT || 1337
 
