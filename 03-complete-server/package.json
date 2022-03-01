@@ -9,7 +9,5 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "dependencies": {
-    "middleware": "^1.0.0"
-  }
+  "dependencies": {}
 }
