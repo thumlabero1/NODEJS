@@ -6,8 +6,9 @@ const port = process.env.PORT || 1337
 
 const app = express()
 
+const middleware = require('./middleware')
 
-app.use(middleware.cors)
+app.use('/middleware', middleware.cors)
 
 app.get('/products', api.listProducts)
 

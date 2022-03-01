@@ -18,9 +18,16 @@ function cors(req, res, next) {
 
         'Access-Control-Allow-Headers',
 
-        'X-Requested-With, X-HTTP-Method-Override, Content-Type, Accept'
-    )
+        'X-Requested-With, X-HTTP-Method-Override, Content-Type, Accept')
 
     next()
 
+    function handleError(err, req, res, next) {
+        console.error(err)
+
+        if (res.headersSent) return next(err)
+
+        res.status(500).json({ error: 'Internal Error' })
+
+    }
 }
