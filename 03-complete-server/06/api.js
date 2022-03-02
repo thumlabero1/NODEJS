@@ -38,3 +38,8 @@ async function listProducts(req, res) {
     res.json(products)
 
 }
+async function createProduct(req, res, next) {
+    console.log('request body:', req.body)
+    res.json(req.body)
+
+}
