@@ -38,4 +38,8 @@ function notFound(req, res) {
     res.status(404).json({ error: 'Not Found' })
 
 }
-module.exports = middleware()
+module.exports = {
+    cors,
+    handleError,
+    notFound
+}
