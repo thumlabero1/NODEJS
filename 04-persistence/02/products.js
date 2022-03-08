@@ -2,6 +2,8 @@ const cuid = require('cuid')
 
 const db = require('./db')
 
+const { isURL } = require('validator')
+
 const Product = db.model('Product', {
 
     _id: { type: String, default: cuid },
@@ -23,3 +25,25 @@ const Product = db.model('Product', {
     tags: { type: [String], index: true }
 
 })
+
+function urlSchema(opts = {}) {
+
+    const { required } = opts
+
+    return {
+
+        type: String,
+
+        required: !!required,
+
+        validate: {
+
+            validator: isURL,
+
+            message: props => `${props.value} is not a valid URL`
+
+        }
+
+    }
+
+}
