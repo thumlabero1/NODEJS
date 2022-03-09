@@ -1,14 +1,15 @@
 const cuid = require('cuid')
+const db = require('../db')
 
 const { isEmail } = require('validator')
 
-const db = require('../models/db')
+
 
 const Order = db.model('Order', {
 
     _id: { type: String, default: cuid },
 
-    buyerEmail: emailSchema({ required: true }),
+    buyerEmail: EmailSchema({ required: true }),
 
     products: [
 

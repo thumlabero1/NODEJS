@@ -26,6 +26,7 @@ const Product = db.model('Product', {
 
 })
 
+
 function urlSchema(opts = {}) {
 
     const { required } = opts
