@@ -2,7 +2,7 @@ const cuid = require('cuid')
 
 const { isEmail } = require('validator')
 
-const db = require('../db')
+const db = require('../models/db')
 
 const Order = db.model('Order', {
 

@@ -41,16 +41,6 @@ async function editProduct(req, res, next) {
 }
 async function deleteProduct(req, res, next) {
     res.json({ success: true })
-
-}
-module.exports = {
-
-    getProduct,
-
-    listProducts,
-    createProduct,
-    editProduct,
-    deleteProduct
 }
 async function createOrder(req, res, next) {
     const order = await Orders.create(req.body)
@@ -74,4 +64,13 @@ async function listOrders(req, res, next) {
     })
     res.json(orders)
 
+}
+module.exports = {
+
+    getProduct,
+
+    listProducts,
+    createProduct,
+    editProduct,
+    deleteProduct
 }

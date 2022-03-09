@@ -6,7 +6,7 @@ const api = require('./api')
 
 const middleware = require('./middleware')
 
-const orders = require('./orders')
+const orders = require('./models/orders')
 
 const port = process.env.PORT || 1337
 
