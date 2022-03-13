@@ -1,3 +1,4 @@
+const passport = require('passport')
 const sessionSecret = process.env.SESSION_SECRET || 'mark it zero'
 const adminPassword = process.env.ADMIN_PASSWORD || 'iamthewalrus'
 passport.use(
@@ -31,3 +32,25 @@ app.use(
     })
 
 )
+app.post('/login', passport.authenticate('local'), (req, res) => res.json({ success: true })
+
+)
+
+app.post('/products', ensureAdmin, api.createProduct)
+
+app.put('/products/:id', ensureAdmin, api.editProduct)
+
+app.delete('/products/:id', ensureAdmin, api.deleteProduct)
+
+app.get('/orders', ensureAdmin, api.listOrders)
+
+app.post('/orders', ensureAdmin, api.createOrder)
+
+function ensureAdmin(req, res, next) {
+
+    const isAdmin = req.user && req.user.username === 'admin'
+    if (isAdmin) return next()
+
+    res.status(401).json({ error: 'Unauthorized' })
+
+}
