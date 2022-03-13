@@ -13,3 +13,21 @@ passport.use(
     })
 
 )
+passport.serializeUser((user, cb) => cb(null, user))
+
+passport.deserializeUser((user, cb) => cb(null, user))
+app.use(cookieParser())
+
+app.use(
+
+    expressSession({
+
+        secret: sessionSecret,
+
+        resave: false,
+
+        saveUninitialized: false
+
+    })
+
+)
