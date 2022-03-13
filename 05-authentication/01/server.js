@@ -1,3 +1,6 @@
+const express = require('express')
+const expressSession = require('express-session')
+const app = express()
 const passport = require('passport')
 const sessionSecret = process.env.SESSION_SECRET || 'mark it zero'
 const adminPassword = process.env.ADMIN_PASSWORD || 'iamthewalrus'

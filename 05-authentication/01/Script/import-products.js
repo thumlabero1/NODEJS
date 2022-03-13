@@ -1,8 +1,8 @@
-const db = require('../../../04-persistence/03/db')
+const db = require('../db')
 
 const Products = require('../models/products')
 
-const products = require('../../products.json')
+const products = require('../products')
 
 ;
 (async function() {
