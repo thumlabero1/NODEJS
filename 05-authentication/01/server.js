@@ -2,6 +2,8 @@ const express = require('express')
 const expressSession = require('express-session')
 const app = express()
 const passport = require('passport')
+const LocalStratgy = require('passport-local').Strategy;
+
 const sessionSecret = process.env.SESSION_SECRET || 'mark it zero'
 const adminPassword = process.env.ADMIN_PASSWORD || 'iamthewalrus'
 passport.use(
@@ -57,3 +59,5 @@ function ensureAdmin(req, res, next) {
     res.status(401).json({ error: 'Unauthorized' })
 
 }
+app.use(passport.initialize());
+app.use(passport.session());
