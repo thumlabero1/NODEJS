@@ -4,14 +4,14 @@ const https = require('https')
 
 const fileUrl =
 
-'https://www.fullstackreact.com/assets/images/fullstack-react-hero-book.png'
+    'https://www.fullstackreact.com/assets/images/fullstack-react-hero-book.png'
 
 https.get(fileUrl, res => {
 
-res
+    res
 
-.pipe(fs.createWriteStream('book.png'))
+        .pipe(fs.createWriteStream('book.png'))
 
-.on('finish', () => console.log('file saved!'))
+    .on('finish', () => console.log('file saved!'))
 
 })
