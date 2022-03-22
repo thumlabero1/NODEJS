@@ -1,0 +1,18 @@
+doctype html
+html(lang='en')
+  head
+    meta(charset='UTF-8')
+    title Login Page with Background Image Example
+    link(rel='./public/stylesheets' href='./public/stylesheets/style.css')
+    img(src="./public/images/background.jpg")
+  body
+    // partial:index.partial.html
+    #bg
+    form
+      .form-field
+        input(type='email' placeholder='Email / Username' required='')
+      .form-field
+        input(type='password' placeholder='Password' required='')
+      .form-field
+        button.btn(type='submit') Log in
+    // partial
