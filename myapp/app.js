@@ -11,7 +11,7 @@ var app = express();
 //connect to mongodb
 
 //connect to mongodb
-mongoose.connect('mongodb://localhost:27017/express_app', function() {
+mongoose.connect('mongodb://localhost:27017/sample_airbnb', function() {
         console.log('Connection has been made');
     })
     .catch(err => {
